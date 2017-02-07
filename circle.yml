@@ -63,4 +63,4 @@ dependencies:
     - terminus build-env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --notify="$NOTIFY"
 test:
   override:
-    - echo 'Add tests here'
+    - cd tests && ./scripts/run-behat
