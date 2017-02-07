@@ -58,7 +58,7 @@ dependencies:
     - composer create-project -n -d ~/.terminus/plugins pantheon-systems/terminus-secrets-plugin:~1
 
 
-    - git clone git@github.com:stevector/ci-drops-7.git ~/tests
+    - cd ~ && git clone git@github.com:stevector/ci-drops-7.git tests
     # It is possible that we are testing a new branch in drops-7, and that
     # branch has corresponding changes in the testing repo in a branch of
     # the same name. using the -B flag will check that branch out if it exists.
