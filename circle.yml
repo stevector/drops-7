@@ -56,7 +56,17 @@ dependencies:
     - mkdir -p ~/.terminus/plugins
     - composer create-project -n -d ~/.terminus/plugins pantheon-systems/terminus-build-tools-plugin:~1
     - composer create-project -n -d ~/.terminus/plugins pantheon-systems/terminus-secrets-plugin:~1
+
+
+    - git clone git@github.com:stevector/ci-drops-8.git ~/tests
+    # It is possible that we are testing a new branch in drops-7, and that
+    # branch has corresponding changes in the testing repo in a branch of
+    # the same name. using the -B flag will check that branch out if it exists.
+    # otherwise it will just make a new branch off of master.
+    - cd ~/tests && git checkout -B $CIRCLE_BRANCH
   post:
+    # drops-7 does not provide a settings.php file
+    - cp sites/default/default.settings.php sites/default/settings.php
     - terminus auth:login -n --machine-token="$TERMINUS_TOKEN"
     - terminus build-env:delete:ci -n "$TERMINUS_SITE" --keep=2 --yes
     - terminus env:wake -n "$TERMINUS_SITE.dev"
