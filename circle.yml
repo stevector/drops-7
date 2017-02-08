@@ -26,8 +26,8 @@ dependencies:
     - cd $TESTS_DIR && git checkout $CIRCLE_BRANCH || true
     - cd $TESTS_DIR && composer install
 
-    - cd $TESTS_DIR && ./scripts/git-config.sh
-    - cd $TESTS_DIR && ./scripts/install-globals.sh
+    - cd $TESTS_DIR && ./scripts/git-config
+    - cd $TESTS_DIR && ./scripts/install-globals
   post:
     - cd $TESTS_DIR && ./scripts/create-pantheon-multidev
 test:
