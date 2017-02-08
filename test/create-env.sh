@@ -2,8 +2,7 @@
 
 # Exit immediately on errors.
 # But don't echo everything because of the TERMINUS_TOKEN
-# Once CircleCI 2.0 is out, these are commands that would move to a shared
-# Dockerfile
+# Once CircleCI 2.0 is out, this should move to a shared Dockerfile
 set -e
 
 # drops-7 does not provide a settings.php file
