@@ -7,6 +7,8 @@
 set -e
 
 # drops-7 does not provide a settings.php file
+
+cd $SITE_DIR
 cp sites/default/default.settings.php sites/default/settings.php
 
 terminus auth:login -n --machine-token="$TERMINUS_TOKEN"
