@@ -32,6 +32,7 @@ machine:
     PR_LABEL: ${BRANCH:+pr-$BRANCH}
     TERMINUS_ENV: ci-$CIRCLE_BUILD_NUM
     TERMINUS_SITE: ci-drops-7
+    TESTS_DIR: ~/tests
     PATH: $PATH:~/.composer/vendor/bin:~/.config/composer/vendor/bin
 
 dependencies:
@@ -54,8 +55,8 @@ dependencies:
     # the same name.
     # If that branch doesn't exist the command will throw an error so also
     # use true.
-    - cd ~/tests && git checkout $CIRCLE_BRANCH || true
-    - cd ~/tests && composer install
+    - cd $TESTS_DIR && git checkout $CIRCLE_BRANCH || true
+    - cd $TESTS_DIR && composer install
 
     - composer global require -n "hirak/prestissimo:^0.3"
     - composer global require -n "consolidation/cgr"
@@ -74,4 +75,4 @@ dependencies:
     - terminus build-env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --notify="$NOTIFY"
 test:
   override:
-    - cd ~/tests && ./scripts/run-behat
+    - cd $TESTS_DIR && ./scripts/run-behat
