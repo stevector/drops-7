@@ -9,7 +9,7 @@ machine:
     TERMINUS_ENV: ci-$CIRCLE_BUILD_NUM
     TERMINUS_SITE: ci-drops-7
     TESTS_DIR: ~/tests
-    SITE_DIR: ~/drops-7
+    SITE_DIR: /home/ubuntu/drops-7
     PATH: $PATH:~/.composer/vendor/bin:~/.config/composer/vendor/bin
 
 dependencies:
