@@ -26,7 +26,6 @@ dependencies:
 
     - ./test/git-config.sh
     - ./test/install-globals.sh
-
   post:
     - ./test/create-env.sh
 test:
