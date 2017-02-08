@@ -62,7 +62,7 @@ dependencies:
     # It is possible that we are testing a new branch in drops-7, and that
     # branch has corresponding changes in the testing repo in a branch of
     # the same name.
-    - cd ~/tests && git checkout $CIRCLE_BRANCH 2>/dev/null $CIRCLE_BRANCH && composer install
+    - cd ~/tests && git checkout $CIRCLE_BRANCH 2>/dev/null && composer install
   post:
     # drops-7 does not provide a settings.php file
     - cp sites/default/default.settings.php sites/default/settings.php
