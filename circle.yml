@@ -8,7 +8,7 @@ machine:
   environment:
     TERMINUS_ENV: ci-$CIRCLE_BUILD_NUM
     TERMINUS_SITE: ci-drops-7
-    TESTS_DIR: ~/tests
+    TESTS_DIR: /home/ubuntu/tests
     SITE_DIR: /home/ubuntu/drops-7
     PATH: $PATH:~/.composer/vendor/bin:~/.config/composer/vendor/bin
 
@@ -22,8 +22,8 @@ dependencies:
     # the same name.
     # If that branch doesn't exist the command will throw an error so also
     # use true.
-    - cd ~/tests && git checkout $CIRCLE_BRANCH || true
-    - cd ~/tests && composer install
+    - cd $TESTS_DIR && git checkout $CIRCLE_BRANCH || true
+    - cd $TESTS_DIR && composer install
 
     - ./test/git-config.sh
     - ./test/install-globals.sh
@@ -31,4 +31,4 @@ dependencies:
     - ./test/create-env.sh
 test:
   override:
-    - cd ~/tests && ./scripts/run-behat
+    - cd $TESTS_DIR ~/tests && ./scripts/run-behat
