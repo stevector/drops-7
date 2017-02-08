@@ -59,10 +59,14 @@ dependencies:
 
 
     - cd ~ && git clone git@github.com:stevector/ci-drops-7.git tests
+
     # It is possible that we are testing a new branch in drops-7, and that
     # branch has corresponding changes in the testing repo in a branch of
     # the same name.
-    - cd ~/tests && git checkout $CIRCLE_BRANCH 2>/dev/null && composer install
+    # From http://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches
+    - cd ~/tests && git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+    - cd ~/tests && git fetch --all && git pull --all
+    - cd ~/tests && git checkout -B $CIRCLE_BRANCH && composer install
   post:
     # drops-7 does not provide a settings.php file
     - cp sites/default/default.settings.php sites/default/settings.php
