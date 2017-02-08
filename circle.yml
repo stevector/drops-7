@@ -21,19 +21,14 @@ dependencies:
     # the same name.
     # If that branch doesn't exist the command will throw an error so also
     # use true.
-    - cd $TESTS_DIR && git checkout $CIRCLE_BRANCH || true
-    - cd $TESTS_DIR && composer install
+    - cd ~/tests && git checkout $CIRCLE_BRANCH || true
+    - cd ~/tests && composer install
 
     - ./test/git-config.sh
     - ./test/install-globals.sh
 
   post:
-    # drops-7 does not provide a settings.php file
-    - cp sites/default/default.settings.php sites/default/settings.php
-    - terminus auth:login -n --machine-token="$TERMINUS_TOKEN"
-    - terminus build-env:delete:ci -n "$TERMINUS_SITE" --keep=4 --yes
-    - terminus env:wake -n "$TERMINUS_SITE.dev"
-    - terminus build-env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --notify="$NOTIFY"
+    - ./test/create-env.sh
 test:
   override:
-    - cd $TESTS_DIR && ./scripts/run-behat
+    - cd ~/tests && ./scripts/run-behat
