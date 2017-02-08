@@ -3,7 +3,7 @@
 # Exit immediately on errors, and echo commands as they are executed.
 # Once CircleCI 2.0 is out, these are commands that would move to a shared
 # Dockerfile
-set -e
+set -ex
 
 composer global require -n "hirak/prestissimo:^0.3"
 composer global require -n "consolidation/cgr"

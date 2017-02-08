@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Exit immediately on errors, and echo commands as they are executed.
+# Exit immediately on errors.
 set -e
 
 git config --global user.email "$GIT_EMAIL"

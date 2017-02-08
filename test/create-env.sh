@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Exit immediately on errors, and echo commands as they are executed.
+# Exit immediately on errors.
+# But don't echo everything because of the TERMINUS_TOKEN
 # Once CircleCI 2.0 is out, these are commands that would move to a shared
 # Dockerfile
 set -e
