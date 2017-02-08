@@ -8,6 +8,7 @@ machine:
   environment:
     TERMINUS_ENV: ci-$CIRCLE_BUILD_NUM
     TERMINUS_SITE: ci-drops-7
+    # For some reason, relative paths like "~/tests" did not work.
     TESTS_DIR: /home/ubuntu/tests
     SITE_DIR: /home/ubuntu/drops-7
     PATH: $PATH:~/.composer/vendor/bin:~/.config/composer/vendor/bin
