@@ -39,9 +39,6 @@ dependencies:
   cache_directories:
     - ~/.composer/cache
   pre:
-    # Avoid ssh prompting when connecting to new ssh hosts
-    - echo "Begin build for $CI_LABEL${PR_LABEL:+ for }$PR_LABEL. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
-    - echo "StrictHostKeyChecking no" >> "$HOME/.ssh/config"
     - |
       if [ -n "$GITHUB_TOKEN" ] ; then
         composer config --global github-oauth.github.com $GITHUB_TOKEN
