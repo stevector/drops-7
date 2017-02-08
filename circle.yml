@@ -24,16 +24,9 @@ dependencies:
     - cd $TESTS_DIR && git checkout $CIRCLE_BRANCH || true
     - cd $TESTS_DIR && composer install
 
-    - git config --global user.email "$GIT_EMAIL"
-    - git config --global user.name "Circle CI"
-    - composer global require -n "hirak/prestissimo:^0.3"
-    - composer global require -n "consolidation/cgr"
-    - cgr "pantheon-systems/terminus:~1" --stability beta
-    - terminus --version
-    - cgr "drush/drush:~8"
-    - mkdir -p ~/.terminus/plugins
-    - composer create-project -n -d ~/.terminus/plugins pantheon-systems/terminus-build-tools-plugin:~1
-    - composer create-project -n -d ~/.terminus/plugins pantheon-systems/terminus-secrets-plugin:~1
+    - ./test/git-config.sh
+    - ./test/install-globals.sh
+
   post:
     # drops-7 does not provide a settings.php file
     - cp sites/default/default.settings.php sites/default/settings.php
