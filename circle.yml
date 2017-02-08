@@ -17,7 +17,7 @@ dependencies:
   cache_directories:
     - ~/.composer/cache
   override:
-    - cd ~ && git clone git@github.com:stevector/ci-drops-7.git tests
+    - git clone git@github.com:stevector/ci-drops-7.git $TESTS_DIR
     # It is possible that we are testing a new branch in drops-7, and that
     # branch has corresponding changes in the testing repo in a branch of
     # the same name.
